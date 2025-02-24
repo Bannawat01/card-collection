@@ -37,7 +37,7 @@ export function RegisterForm({
                                 </div>
                                 <Input id="password" type="password" required />
                             </div>
-                            <Button type="submit" className="w-full">
+                            <Button type="submit" className="w-full" >
                                 Sing up 🔥
                             </Button>
                         </div>
