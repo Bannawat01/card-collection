@@ -1,4 +1,4 @@
-"use client"
+'use client'
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -21,10 +21,9 @@ export function LoginForm({ className, ...props }: React.ComponentPropsWithoutRe
       <div className="relative flex items-center justify-center min-h-screen p-6">
         <Card className="w-full max-w-md shadow-2xl rounded-lg border border-gray-150 bg-white/90 backdrop-blur-lg">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold text-gray-900">Welcome Back</CardTitle>
+            <CardTitle className="text-2xl font-bold text-gray-900">Login</CardTitle>
             <CardDescription className="text-gray-700">
-              Sign in to access your account
-            </CardDescription>
+              Enter your email below to login to your account            </CardDescription>
           </CardHeader>
           <CardContent>
             <form className="space-y-6">
