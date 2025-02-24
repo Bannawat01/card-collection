@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { login } from "@/app/login/action"
 
 export function LoginForm({
   className,
@@ -41,7 +42,7 @@ export function LoginForm({
                 </div>
                 <Input id="password" type="password" required />
               </div>
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full" formAction={login} >
                 Login
               </Button>
               <Button variant="outline" className="w-full">
