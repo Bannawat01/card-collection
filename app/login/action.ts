@@ -8,20 +8,27 @@ import { createClient } from '@/utils/supabase/server'
 export async function login(formData: FormData) {
     const supabase = await createClient()
 
-    // type-casting here for convenience
-    // in practice, you should validate your inputs
-    const data = {
-        email: formData.get('email') as string,
-        password: formData.get('password') as string,
+    const email = formData.get('email') as string | null
+    const password = formData.get('password') as string | null
+
+    if (!email || !password) {
+        console.error('Missing email or password')
+        redirect('/error')
+        return
     }
 
-    const { error } = await supabase.auth.signInWithPassword(data)
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
 
     if (error) {
-        console.error('Error during login:', error)
-        redirect('/error')
+        if (error.message.includes('Email not confirmed')) {
+            console.error('Email not confirmed:', error)
+            redirect('/error?message=Please confirm your email before logging in.')
+        } else {
+            console.error('Error during login:', error)
+            redirect('/error')
+        }
     } else {
-        await revalidatePath('/', 'layout')
+        revalidatePath('/', 'layout')
         redirect('/home')
     }
 }

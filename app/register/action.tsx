@@ -18,12 +18,15 @@ export async function signup(formData: FormData) {
         if (error.message.includes('already registered')) {
             console.error('User already registered:', error)
             redirect('/login')
+        } else if (error.message.includes('over_email_send_rate_limit')) {
+            console.error('Too many requests. Please wait before trying again:', error)
+            redirect('/error?message=Too many requests. Please wait before trying again.')
         } else {
             console.error('Error during signup:', error)
             redirect('/error')
         }
+    } else {
+        revalidatePath('/', 'layout')
+        redirect('/login')
     }
-
-    revalidatePath('/', 'layout')
-    redirect('/home')
 }

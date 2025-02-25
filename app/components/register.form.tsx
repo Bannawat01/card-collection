@@ -10,7 +10,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { signup } from "../register/action"
 
-export function RegisterForm({ className, ...props }: React.ComponentPropsWithoutRef<"div">) {
+export function RegisterForm({
+    className,
+    ...props
+}: React.ComponentPropsWithoutRef<"div">) {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
         const formData = new FormData(event.currentTarget)
@@ -18,7 +21,7 @@ export function RegisterForm({ className, ...props }: React.ComponentPropsWithou
     }
 
     return (
-        <div className="relative">
+        <div className={className} {...props}>
 
             <div className="fixed inset-0 w-screen h-screen bg-gradient-to-br from-pink-500 via-purple-500 to-indigo-500"></div>
 
