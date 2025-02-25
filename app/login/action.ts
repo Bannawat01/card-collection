@@ -23,6 +23,9 @@ export async function login(formData: FormData) {
         if (error.message.includes('Email not confirmed')) {
             console.error('Email not confirmed:', error)
             redirect('/error?message=Please confirm your email before logging in.')
+        } else if (error.message.includes('Invalid login credentials')) {
+            console.error('Invalid login credentials:', error)
+            redirect('/error?message=Invalid login credentials. Please try again.')
         } else {
             console.error('Error during login:', error)
             redirect('/error')
